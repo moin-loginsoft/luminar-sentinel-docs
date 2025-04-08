@@ -81,9 +81,9 @@ Luminar is an asset-based cybersecurity intelligence platform that empowers ente
 
 - Click on **Open connector page**, then click on **Deploy to Azure**. You will be redirected to the configuration screen.
 
-  ![install_02](Images/install_02.png)
+  ![install_03](Images/install_03.png)
 
-  ![install_02](Images/install_02.png)
+  ![install_04](Images/install_04.png)
 
 - After deploying the connector successfully, you will see the configuration screen.
   
