@@ -25,82 +25,53 @@ Luminar is an asset-based cybersecurity intelligence platform that empowers ente
 
 ### Creating Application for API Access
 
-- Open [https://portal.azure.com/](https://portal.azure.com) and search `Microsoft Entra ID` service.
+- Open [https://portal.azure.com/](https://portal.azure.com) and search `App registrations` service.
 
-![01](Images/01.png)
 
-- Click `Add->App registration`.
 
-![02a](Images/02a.png)
+- Click `New registration`.
+  
+![app-registration](Images/app-registration.png)
+
+
 
 - Enter the name of application and select supported account types and click on `Register`.
+  
+![register](Images/register.png)
 
-![02](Images/02.png)
 
-- In the application overview you can see `Application Name`, `Application ID` and `Tenant ID`.
- 
-![03](Images/03.png)
+- In the application overview you can see `Display Name`, `Application ID` and `Tenant ID`.
+  
+![api-permissions](Images/api-permissions.png)
+
 
 - After creating the application, we need to set API permissions for connector. For this purpose,
   - Click `Manage->API permissions` tab
   - Click `Microsoft Graph` button
   - Search `indicator` and click on the `ThreatIndicators.ReadWrite.OwnedBy`, click `Add permissions` button below.
   - Click on `Grant admin consent`
+    
+![api-permissions](Images/api-permissions.png)
+![application-permission](Images/application-permission.png)
+![graph-permission](Images/graph-permission.png)
+![TI-permission](Images/TI-permission.png)
+ 
 
- ![app_per](Images/app_per.png) 
-
-- We need secrets to access programmatically. For creating secrets
+- We need to generate client secret for ingesting indicators. For creating secrets
   - Click `Manage->Certificates & secrets` tab
   - Click `Client secrets` tab
   - Click `New client secret` button
   - Enter description and set expiration date for secret
+    
+![newclientsecret](Images/newclientsecret.png)
+![clientsecret](Images/clientsecret.png)
 
-![10](Images/10.png)
-
-- Use Secret `Value` to configure connector.
+- Use Secret `Value` in Client Secret parameter in configuration.
   
- ![11](Images/11.png)
 
-## Provide Permission To App Created Above
+# Deploy Luminar Threat Intelligence from the content hub
 
-- Open [https://portal.azure.com/](https://portal.azure.com) and search `Microsoft Sentinel` service.
-- Goto `Settings` -> `Workspace Setting`
-
-![04](Images/04.png)
-
-- Goto `Access Control(IAM)` -> `Add`
-
-![05](Images/05.png)
-
-- Search for `Microsoft Sentinel Contributor` and click `Next`
-
-![06](Images/06.png)
-
-- Select `User,group or service principle` and click on `select members`.
-- Search for the app name created above and click on `select`.
-- Click on `Next`
-
-![07](Images/07.png)
-
-- Click on `Review + assign`
-
-![08](Images/08.png)
-
-# Deploy VMRay Threat Intelligence Feed Function App Connector
-
-### Flex Consumption Plan 
-- Click on below button to deploy with Flex Consumption plan:
-
-  [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fvmray%2Fms-sentinel%2Frefs%2Fheads%2Fmain%2FVMRayThreatIntelligence%2FFlexConsumptionPlan%2Fazuredeploy.json)
-
-### Premium Plan
-- Click on below button to deploy with Premium plan:
-
-  [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fvmray%2Fms-sentinel%2Frefs%2Fheads%2Fmain%2FVMRayThreatIntelligence%2FPremiumPlan%2Fazuredeploy.json)
-
-- It will redirect to feed Configuration page.
-  ![09](Images/09.png)
-- Please provide the values accordingly.
+- After deploying the connector successfully, you will see the configuration screen. 
   
 |       Fields       |   Description |
 |:---------------------|:--------------------
@@ -108,18 +79,18 @@ Luminar is an asset-based cybersecurity intelligence platform that empowers ente
 | Resource Group 	| Select the appropriate Resource Group |
 | Region			| Based on Resource Group this will be uto populated |
 | Function Name		| Please provide a function name if needed to change the default value|
-| Vmray Base URL | VMRay Base URL |
-| Vmray API Key | VMRay API Key |
-| Azure Client ID   | Enter the Azure Client ID created in the App Registration Step |
-| Azure Client Secret | Enter the Azure Client Secret created in the App Registration Step |
-|Azure Tenant ID | Enter the Azure Tenant ID of the App Registration |
-| Azure Workspacse ID   | Enter the Azure Workspacse ID. Go to  `Log Analytics workspace -> Overview`, Copy `Workspace ID`, refer below image.|
+| Application ID | Enter the Azure Client ID created in the App Registration Step |
+| Tenant ID | Enter the Azure Tenant ID of the App Registration |
+| Client Secret | Enter the Azure Client Secret created in the App Registration Step |
+| Luminar API Client ID   | Luminar API Client ID |
+| Luminar API Account ID | Luminar API Account ID |
+| Luminar API Client Secret | Luminar API Client Secert |
+| Luminar Initial Fetch Date | Luminar Initial Fetch Date |
+| Time Interval | Time Interval |
 | App Insights Workspace Resource ID | Go to `Log Analytics workspace` -> `Settings` -> `Properties`, Copy `Resource ID` and paste here |
 
-![40](Images/40.png)
+![configuration](Images/configuration.png)
 
 - Once you provide the above values, please click on `Review + create` button.
 
 - Once the threat intelligence function app connector is succussefully deployed, the connector saves the IOCS into the Microsoft Sentinel Threat Intelligence.
-
-![ti_feed](Images/ti_feed.png)
