@@ -71,7 +71,21 @@ Luminar is an asset-based cybersecurity intelligence platform that empowers ente
 
 # Deploy Luminar Threat Intelligence from the content hub
 
-- After deploying the connector successfully, you will see the configuration screen. 
+- Navigate to your Microsoft Sentinel workspace, open the Content Hub, search for **Luminar Threat Intelligence**, and click Install.
+
+![install_01](Images/install_01.png)
+
+- Once the connector is installed, click on **Manage** to configure its settings.
+
+![install_02](Images/install_02.png)
+
+- Click on **Open connector page**, then click on **Deploy to Azure**. You will be redirected to the configuration screen.
+
+  ![install_02](Images/install_02.png)
+
+  ![install_02](Images/install_02.png)
+
+- After deploying the connector successfully, you will see the configuration screen.
   
 |       Fields       |   Description |
 |:---------------------|:--------------------
@@ -94,3 +108,6 @@ Luminar is an asset-based cybersecurity intelligence platform that empowers ente
 - Once you provide the above values, please click on `Review + create` button.
 
 - Once the threat intelligence function app connector is succussefully deployed, the connector saves the IOCS into the Microsoft Sentinel Threat Intelligence.
+- To view the indicators, navigate to your **Microsoft Sentinel workspace** and click on **Threat Intelligence**.
+
+![indicators](Images/indicators.png)
